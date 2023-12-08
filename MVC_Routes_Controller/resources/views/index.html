@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<body>
+    <div class="container">
+        <!-- Nav -->
+        <nav class="main-nav">
+            <img src="../image/logoHCMUS.png" id="logo" alt="Microsoft" class="logo">
+
+            <div class="titleHeader">HỘI NGHỊ KHOA HỌC 2022</div>
+            <div class="">
+                <a href="/list" class="btn btn-primary">
+                    Danh sách tham gia<i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="/register" class="btn btn-primary">
+                    Xác nhận tham gia<i class="fas fa-chevron-right"></i>
+                </a>
+
+            </div>
+        </nav>
+
+        <!-- Showcase -->
+        <header class="showcase">
+        </header>
+
+        <!-- Home cards 1 -->
+        <section class="home-cards">
+            <div>
+                <img src="../image/it.jpg" alt="">
+                <h4>Lĩnh vực công nghệ thông tin</h4>
+
+            </div>
+            <div>
+                <img src="../image/chemistry.jpg" alt="" />
+                <h4>Lĩnh vực kĩ thuật hóa học</h4>
+            </div>
+            <div>
+                <img src="../image/dientu.jpg" alt="" />
+                <h4>Lĩnh vực kĩ thuật điện tử</h4>
+            </div>
+            <div>
+                <img src="../image/math.jpg" alt="" />
+                <h4>Lĩnh vực toán học</h4>
+            </div>
+        </section>
+</body>
+<script>
+    $('#logo').click(function (e) {
+        //e.preventDefault();
+        window.location = "/";
+    });
+</script>
+
+
+</html>

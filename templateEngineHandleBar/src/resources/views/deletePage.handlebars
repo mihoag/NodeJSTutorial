@@ -1,0 +1,28 @@
+<table class="table table-sm table-borderless">
+    <thead>
+        <tr class="table-primary  border-bottom border-black">
+            <th>#</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Avatar</th>
+            <th>Operartion</th>
+            <th>Delete At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each persons}}
+        <tr>
+            <td class="py-3"><b>{{sum @index 1}}</b></td>
+            <td class="py-3">{{first_name}}</td>
+            <td class="py-3">{{last_name}}</td>
+            <td class="py-3">{{email}}</td>
+            <td class="py-3"><img class="img-responsive img-thumbnail" alt="" src="{{avatar}}"></td>
+            <td>
+                <a href="/restore/{{id}}">Restore</a>
+            </td>
+            <td>{{deleteat}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

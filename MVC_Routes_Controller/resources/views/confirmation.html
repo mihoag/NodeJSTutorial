@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Nav -->
+        <nav class="main-nav">
+            <img src="../image/logoHCMUS.png" alt="logo" id="logo" class="logo">
+
+            <div class="titleHeader">HỘI NGHỊ KHOA HỌC 2022</div>
+            <div></div>
+            <a href="/list" class="btn btn-primary">
+                Danh sách tham gia<i class="fas fa-chevron-right"></i>
+            </a>
+        </nav>
+        <div class="row mt-4">
+            <div class="alert alert-success" role="alert">
+                XIN CHÀO {{name}} , bạn đã xác nhận tham gia hội nghị khoa học thành công. Chúng tôi sẽ gửi thời gian tổ
+                chức vào email '{{email}}'. Về trang chủ để xem thêm thông tin về hội nghị.
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#logo').click(function (e) {
+            //e.preventDefault();
+            window.location = "/";
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<div class="container">
+    <h1>Image Upload</h1>
+    {{msg}}
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+            <div class="btn grey">
+                <span>File</span>
+                <input name="myImage" type="file">
+            </div>
+
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <br>
+    <h1>File Upload</h1>
+    {{msg}}
+    <form action="/uploadFile" method="POST" enctype="multipart/form-data">
+        <div class="file-field input-field">
+            <div class="btn grey">
+                <span>File</span>
+                <input name="myFile" type="file">
+            </div>
+
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <br>
+
+    <table class="table table-sm table-borderless">
+        <thead>
+            <tr class="table-primary  border-bottom border-black">
+                <th>#</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Type</th>
+                <th>Opertion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each images}}
+
+            <tr>
+                <td class="py-3"><b>{{id}}</b></td>
+                <td class="py-3">{{name}}</td>
+                <td class="py-3"><img class="img-responsive img-thumbnail" alt="" src="{{url}}"></td>
+                <td class="py-3">{{type}}</td>
+                <td>
+                    <a href="/delete/{{public_id}}">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>

@@ -1,0 +1,136 @@
+<a href="/logout">Logout</a>
+<a href="/recycle">Recycle Bin</a>
+
+
+<form action="/ActionManyItems" name="myForm" method="post">
+
+    <div class="d-flex mb-4 mt-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="selectAll">
+            <label class="form-check-label" for="flexCheckDefault">
+                Select all
+            </label>
+        </div>
+        <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+            style="width: 200px; margin: 0 16px;" name="formSelect" required>
+            <option selected>-Choose action-</option>
+            <option value="delete">Delete</option>
+
+        </select>
+        <button type="submit" class="btn btn-primary" id="implement" disabled>Thuc hien</button>
+    </div>
+    <table class="table table-sm table-borderless">
+        <thead>
+            <tr class="table-primary  border-bottom border-black">
+                <th></th>
+                <th># {{{sortable 'id' _sort}}}</th>
+                <th>First name {{{sortable 'first_name' _sort}}}</th>
+                <th>Last name {{{sortable 'last_name' _sort}}}</th>
+                <th>Email {{{sortable 'email' _sort}}}</th>
+                <th>Avatar</th>
+                <th>Operartion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each persons}}
+
+            <tr>
+                <td>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" name="action[]" type="checkbox" value="{{id}}" id="selectItems">
+                    </div>
+                </td>
+                <td class="py-3"><b>{{id}}</b></td>
+                <td class="py-3">{{first_name}}</td>
+                <td class="py-3">{{last_name}}</td>
+                <td class="py-3">{{email}}</td>
+                <td class="py-3"><img class="img-responsive img-thumbnail" alt="" src="{{avatar}}"></td>
+                <td>
+                    <a href="/update/{{id}}">Update</a>
+                    <a href="" data-bs-toggle="modal" data-id="{{id}}" data-bs-target="#deletePersonModal">Delete</a>
+
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+
+</form>
+
+{{#with city}}
+<p>{{id}}</p>
+<p>{{name}}</p>
+{{/with}}
+
+<div class="modal fade" id="deletePersonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Person</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete ???
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="deleteBtn" type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="deleteForm" action="" method="post"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var idPerson;
+        var form = document.forms['deleteForm'];
+        var buttonDelete = document.getElementById('deleteBtn');
+
+        $('#deletePersonModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            idPerson = button.data('id');
+            //console.log(idPerson)
+        })
+
+        buttonDelete.addEventListener("click", function () {
+            //console.log(idPerson);
+            form.action = "/delete/" + idPerson + "?_method=DELETE";
+            form.submit();
+        })
+
+        // change selectAll
+        var selectAll = $('#selectAll');
+        var selectItems = $('input[name="action[]"]');
+        //console.log(selectItems);
+        selectAll.on('change', function () {
+            let isSelectAll = selectAll.prop('checked');
+            selectItems.prop('checked', isSelectAll);
+            disableButton();
+        })
+
+        selectItems.on('change', function () {
+            let isSelectAll = selectItems.length === $('input[name="action[]"]:checked').length;
+            selectAll.prop('checked', isSelectAll);
+            disableButton();
+        })
+
+        function disableButton() {
+            let count = $('input[name="action[]"]:checked').length;
+            if (count > 0) {
+                $('#implement').attr('disabled', false);
+            }
+            else {
+                $('#implement').attr('disabled', true);
+            }
+        }
+
+        var myForm = document.forms['myForm'];
+    }
+    )
+
+
+
+</script>

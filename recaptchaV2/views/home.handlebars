@@ -1,0 +1,38 @@
+<h1>Subscribe</h1>
+<form id="subscribeForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <div class="g-recaptcha" data-sitekey="6Lf7nxQpAAAAAP6IvMEdYFoPigJfKx4P1dvJlRs6"></div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+
+
+<script>
+    document.getElementById('subscribeForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        const captcha = document.querySelector('#g-recaptcha-response').value;
+
+        return fetch('/subscribe', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ name, email, captcha })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                alert(data.msg);
+                if (data.success) return location.reload();
+            });
+    });
+</script>
